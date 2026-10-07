@@ -1,0 +1,16 @@
+{
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.associations": {
+    "cordis.patch.yml": "yaml"
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/*.log": true
+  },
+  "editor.tabSize": 2,
+  "[python]": {
+    "editor.tabSize": 4
+  }
+}

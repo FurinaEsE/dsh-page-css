@@ -1,0 +1,7 @@
+# 换行符统一：仓库里永远是 LF，不受各人 core.autocrlf 影响
+* text=auto eol=lf
+
+# 二进制资源不做任何转换
+*.png binary
+*.jpg binary
+*.jpeg binary

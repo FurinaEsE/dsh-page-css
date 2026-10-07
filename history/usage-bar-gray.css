@@ -1,0 +1,49 @@
+/* ============================================================================
+ * 历史版本回收：用量栏「跟输入框同色」（看着发灰）的那一版
+ * ----------------------------------------------------------------------------
+ * 出处  DSH 会话日志（~/.dsh/sessions/**/session.v4.jsonl.zstd），
+ *       从 `const CSS = ...` 的多次出现中提取，sha1 去重后为 c75c8f0661。
+ * 时间  仓库建立之前，所以 git 里没有 —— addcd8e 这个首个提交里装的
+ *       已经是后来的「显式深色」版本了。
+ * 状态  已被深色版取代（见 index.js 的 body[data-ds-dark-theme] 那几条）。
+ *       保留在此仅作参照，不要直接引用。
+ *
+ * 为什么它看起来是灰色：--dsw-specific-input-major 就是输入框卡片自己的
+ * 填充色令牌（由 dsh-any-background 的「输入框」透明度滑杆驱动）。用它给
+ * 用量栏上色，用量栏就和输入框严丝合缝地同色 —— 半透明叠在壁纸上，观感是
+ * 灰的，而不是纯白或纯黑。
+ * ========================================================================== */
+
+/* 1. Canvas — any area the shell does not paint keeps the wallpaper's own base
+      colour instead of the browser's white. */
+html, body { background-color: #0b0d14 !important; }
+
+/* 2. Windows app-shell frame — let the wallpaper through the outermost
+      element, which otherwise paints --dsw-specific-sidebar-fill. */
+html[data-windows-titlebar] [class*="_frame"] { background-color: transparent !important; }
+
+/* 3. Composer-dock usage strip — dress it as part of the composer instead of a
+      floating light chip. The fill token is the one the composer card itself
+      uses (dsh-any-background's "输入框" slider drives
+      --dsw-specific-input-major), so the two always match whatever opacity
+      that slider is set to. */
+[class*="Rd79tq_"] {
+  background-color: var(--dsw-specific-input-major) !important;
+  color: var(--dsw-alias-label-secondary) !important;
+  font-size: var(--dsh-content-font-size, 14px) !important;
+  font-family: inherit !important;
+  border-radius: var(--dsw-radius-md, 8px) !important;
+}
+
+/* Hover / expanded used to paint --dsw-alias-interactive-bg-hover, which is a
+   solid light block on this theme. Keep the composer fill in every state. */
+[class*="Rd79tq_"]:hover,
+[class*="Rd79tq_"][aria-expanded="true"] {
+  background-color: var(--dsw-specific-input-major) !important;
+}
+
+/* 3b. The row that seats the chip, so the strip reads as one panel with the
+      composer above it rather than a bare band. */
+*:has(> [class*="Rd79tq_"]) {
+  background-color: var(--dsw-specific-input-major) !important;
+}

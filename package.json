@@ -1,0 +1,28 @@
+{
+  "name": "dsh-page-css",
+  "version": "0.0.2",
+  "private": true,
+  "description": "Appearance patch for DeepSeek Harness: lets the dsh-any-background wallpaper through the Windows app frame, paints the page canvas dark, forces the composer-dock usage strip dark, and keeps the wallpaper's centre aligned with the conversation column.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    },
+    "./client": {
+      "default": "./client.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [],
+      "immediately": true
+    }
+  }
+}

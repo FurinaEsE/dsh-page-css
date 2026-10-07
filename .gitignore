@@ -1,0 +1,24 @@
+# 依赖与中间产物
+node_modules/
+*.tgz
+
+# Python 字节码（跑过 wallpaper/ 下的脚本就会生成）
+__pycache__/
+*.pyc
+
+# 壁纸脚本的输出目录（默认写到系统临时目录，用参数指定到仓库里时忽略）
+wallpaper/out/
+
+# 运行期日志 —— 插件会往 ~/.dsh-page-css.log 写诊断信息
+*.log
+.dsh-page-css.log
+
+# VSCode：用户级配置不进仓库，团队共享的两个例外放行
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Windows / 编辑器杂项
+Thumbs.db
+desktop.ini
+*.swp
